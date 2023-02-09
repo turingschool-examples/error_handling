@@ -7,28 +7,28 @@ describe "Books API" do
     get '/api/v1/books'
 
     expect(response).to be_successful
-    books = JSON.parse(response.body, symbolize_names: true)
+    books = JSON.parse(response.body, symbolize_names: true)[:data]
 
     expect(books.count).to eq(3)
 
     books.each do |book|
-      expect(book).to have_key(:id)
-      expect(book[:id]).to be_an(Integer)
+      expect(book[:attributes]).to have_key(:id)
+      expect(book[:attributes][:id]).to be_an(Integer)
 
-      expect(book).to have_key(:title)
-      expect(book[:title]).to be_a(String)
+      expect(book[:attributes]).to have_key(:title)
+      expect(book[:attributes][:title]).to be_a(String)
 
-      expect(book).to have_key(:author)
-      expect(book[:author]).to be_a(String)
+      expect(book[:attributes]).to have_key(:author)
+      expect(book[:attributes][:author]).to be_a(String)
 
-      expect(book).to have_key(:genre)
-      expect(book[:genre]).to be_a(String)
+      expect(book[:attributes]).to have_key(:genre)
+      expect(book[:attributes][:genre]).to be_a(String)
 
-      expect(book).to have_key(:summary)
-      expect(book[:summary]).to be_a(String)
+      expect(book[:attributes]).to have_key(:summary)
+      expect(book[:attributes][:summary]).to be_a(String)
 
-      expect(book).to have_key(:number_sold)
-      expect(book[:number_sold]).to be_an(Integer)
+      expect(book[:attributes]).to have_key(:number_sold)
+      expect(book[:attributes][:number_sold]).to be_an(Integer)
     end
   end
 
@@ -37,27 +37,27 @@ describe "Books API" do
   
     get "/api/v1/books/#{id}"
   
-    book = JSON.parse(response.body, symbolize_names: true)
+    book = JSON.parse(response.body, symbolize_names: true)[:data]
   
     expect(response).to be_successful
   
-    expect(book).to have_key(:id)
-    expect(book[:id]).to eq(id)
+    expect(book[:attributes]).to have_key(:id)
+    expect(book[:attributes][:id]).to eq(id)
   
-    expect(book).to have_key(:title)
-    expect(book[:title]).to be_a(String)
+    expect(book[:attributes]).to have_key(:title)
+    expect(book[:attributes][:title]).to be_a(String)
   
-    expect(book).to have_key(:author)
-    expect(book[:author]).to be_a(String)
+    expect(book[:attributes]).to have_key(:author)
+    expect(book[:attributes][:author]).to be_a(String)
   
-    expect(book).to have_key(:genre)
-    expect(book[:genre]).to be_a(String)
+    expect(book[:attributes]).to have_key(:genre)
+    expect(book[:attributes][:genre]).to be_a(String)
   
-    expect(book).to have_key(:summary)
-    expect(book[:summary]).to be_a(String)
+    expect(book[:attributes]).to have_key(:summary)
+    expect(book[:attributes][:summary]).to be_a(String)
   
-    expect(book).to have_key(:number_sold)
-    expect(book[:number_sold]).to be_an(Integer)
+    expect(book[:attributes]).to have_key(:number_sold)
+    expect(book[:attributes][:number_sold]).to be_an(Integer)
   end
 
   it "can create a new book" do

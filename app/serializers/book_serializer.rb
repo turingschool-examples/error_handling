@@ -1,6 +1,6 @@
 class BookSerializer 
     include JSONAPI::Serializer
-    attributes :title, :author, :summary_length, :id
+    attributes :title, :author, :id, :summary, :genre, :number_sold
     # attribute :summary_length do |object|
     #     object.summary.length
     # end
