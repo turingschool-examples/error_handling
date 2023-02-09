@@ -116,10 +116,17 @@ describe "Books API" do
       expect(response).to_not be_successful
       expect(response.status).to eq(404)
 
-      errors = JSON.parse(response.body, symbolize_names: true)
-      expect(errors).to be_a(Array)
-      expect(errors.first[:status]).to eq("404")
-      expect(errors.first[:title]).to eq("Could not find book with id=1")
+      data = JSON.parse(response.body, symbolize_names: true)
+      expect(data[:errors]).to be_a(Array)
+      expect(data[:errors].first[:status]).to eq("404")
+      expect(data[:errors].first[:title]).to eq("Couldn't find Book with 'id'=1")
+      # {
+      #   errors: [
+      #     {
+      #       title: "Couldn't"
+      #     }
+      #   ]
+      # }
     end
   end
 end
